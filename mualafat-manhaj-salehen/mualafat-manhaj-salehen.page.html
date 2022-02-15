@@ -20,12 +20,12 @@
     </button>
   </ion-fab>
 
-    <div (click)="getlink(b.link,b.title)"  (click)="
+    <div (click)="getlink(c.link,c.title)"  (click)="
     showLoader()" (click)="
-    ac.downloadLL(b.link,b.title)" class="home-box" *ngFor="let b of book" >
+    ac.downloadLL(c.link,c.title)" class="home-box" *ngFor="let c of content" >
       <div class="home-box-img">
         <img  src="\assets/headerimgs/mualafat-icon.png" width="50" height="55">
         </div>
-        <div  class="home-box-title">{{b.title}} </div>
+        <div  class="home-box-title">{{c.title}} </div>
     </div>
 </ion-content>
