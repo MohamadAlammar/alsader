@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { PopoverController } from '@ionic/angular';
 import { LoadingController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
+import { HttpClient } from "@angular/common/http";
+
 @Component({
   selector: 'app-alusul-sabe3-alawal',
   templateUrl: './alusul-sabe3-alawal.page.html',
@@ -12,10 +14,25 @@ import { Storage } from '@ionic/storage';
 })
 export class AlusulSabe3AlawalPage implements OnInit {
   forwardshow: boolean = true;
-  constructor(private storage: Storage,public navCtrl: NavController,private streamingMedia: StreamingMedia,private router: Router,private popoverCtrl: PopoverController,private popoverController: PopoverController,public loadingController: LoadingController) {
+  private data:any = [];
+  public title:any[] = [];
+  public content:any[] = [];
+
+  constructor(private http: HttpClient,private storage: Storage,public navCtrl: NavController,private streamingMedia: StreamingMedia,private router: Router,private popoverCtrl: PopoverController,private popoverController: PopoverController,public loadingController: LoadingController) {
   }
 
   ngOnInit() {
+    const url= 'https://strapi.alsader.net/api/aduruses?filters[adurus_cat][title][$eq]=bahes-kharej-ausul-rabi3-awal-1416&populate=*'
+    this.http.get(url).subscribe((res)=>{
+      this.data = res
+      var i =0;
+      for ( i=0; i< this.data.data.length; i++ ) {
+       var array =[];
+       array["title"] = this.data.data[i].attributes.title;
+       array["link"] = this.data.data[i].attributes.link;
+       this.content.push(array);      
+      }
+    })
   }
   ionViewWillEnter(){
     this.storage.get('page-aldurus').then(value => {

@@ -22,23 +22,12 @@
             <ion-icon   name="ios-redo"></ion-icon>
         </button>
     </ion-fab>
-    <div (click)="streamaudio('https://vps.alsader.net/%D8%A7%D9%84%D8%AF%D8%B1%D9%88%D8%B3/%D8%A7%D9%84%D8%A7%D8%B5%D9%88%D9%84/%D8%A7%D8%B5%D9%88%D9%84%20%D8%B3%D9%86%D8%A9%2014216/3-%20%D8%B1%D8%A8%D9%8A%D8%B9%20%D8%A7%D9%88%D9%84/3%D8%B1%D8%A8%D9%8A%D8%B91_1416%D8%A7%D9%84%D8%AB%D9%84%D8%A7%D8%AB%D8%A7%D8%A1/%D8%A7%D9%84%D8%AB%D9%84%D8%A7%D8%AB%D8%A7%D8%A1%20%203%20%20%D8%B1%D8%A8%D9%8A%D8%B9%20%D8%A7%D9%88%D9%84%20%201416.mp3')"  class="home-box" >
+    <div (click)="streamaudio(c.link)"  class="home-box" *ngFor="let c of content">
     <div class="home-box-img">
       <img  src="\assets/headerimgs/player-icon.png" width="50" height="55">
       </div>
-      <div  class="home-box-title"> الثلاثاء ٣ ربيع ١٤١٦ 	 </div>
+      <div  class="home-box-title"> {{c.title}}	 </div>
    </div>
-   <div (click)="streamaudio('https://vps.alsader.net/%D8%A7%D9%84%D8%AF%D8%B1%D9%88%D8%B3/%D8%A7%D9%84%D8%A7%D8%B5%D9%88%D9%84/%D8%A7%D8%B5%D9%88%D9%84%20%D8%B3%D9%86%D8%A9%2014216/3-%20%D8%B1%D8%A8%D9%8A%D8%B9%20%D8%A7%D9%88%D9%84/4%D8%B1%D8%A8%D9%8A%D8%B91_1416%D8%A7%D9%84%D8%A7%D8%B1%D8%A8%D8%B9%D8%A7%D8%A1/%D8%A7%D9%84%D8%A7%D8%B1%D8%A8%D8%B9%D8%A7%D8%A1%20%204%20%D8%B1%D8%A8%D9%8A%D8%B9%20%D8%A7%D9%88%D9%84%20%201416.mp3')"  class="home-box" >  
-    <div class="home-box-img">
-      <img  src="\assets/headerimgs/player-icon.png" width="50" height="55">
-      </div>
-      <div  class="home-box-title"> الأربعاء ٤ ربيع ١٤١٦ 		 </div>
-   </div>
-   <div (click)="streamaudio('https://vps.alsader.net/%D8%A7%D9%84%D8%AF%D8%B1%D9%88%D8%B3/%D8%A7%D9%84%D8%A7%D8%B5%D9%88%D9%84/%D8%A7%D8%B5%D9%88%D9%84%20%D8%B3%D9%86%D8%A9%2014216/3-%20%D8%B1%D8%A8%D9%8A%D8%B9%20%D8%A7%D9%88%D9%84/9%D8%B1%D8%A8%D9%8A%D8%B91_1416%D8%A7%D9%84%D8%A7%D8%AB%D9%86%D9%8A%D9%86/%D8%A7%D9%84%D8%A7%D8%AB%D9%86%D9%8A%D9%86%209%20%D8%B1%D8%A8%D9%8A%D8%B9%20%D8%A7%D9%88%D9%84%20%201416.mp3')"  class="home-box" >  
-    <div class="home-box-img">
-      <img  src="\assets/headerimgs/player-icon.png" width="50" height="55">
-      </div>
-      <div  class="home-box-title"> الإثنين ٩ ربيع ١٤١٦ 	 </div>
-   </div>
+   
 
 </ion-content>

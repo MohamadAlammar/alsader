@@ -22,11 +22,11 @@
       <ion-icon   name="ios-redo"></ion-icon>
     </button>
   </ion-fab>
-  <div  (click)="getlink(v.link)" (click)="streamaudio(v.link)" class="home-box" *ngFor="let v of voice"  >
+  <div  (click)="getlink(c.link)" (click)="streamaudio(c.link)" class="home-box" *ngFor="let c of content"  >
     <div class="home-box-img">
       <img  src="\assets/headerimgs/player-icon.png" width="50" height="55">
       </div>
-      <div  class="home-box-title">{{v.title}} </div>
+      <div  class="home-box-title">{{c.title}} </div>
   </div> 
    
 </ion-content>

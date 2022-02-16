@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { PopoverController } from '@ionic/angular';
 import { LoadingController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
+import { HttpClient } from "@angular/common/http"; 
 @Component({
   selector: 'app-alusul-jamade-tane',
   templateUrl: './alusul-jamade-tane.page.html',
@@ -12,26 +13,31 @@ import { Storage } from '@ionic/storage';
 })
 export class AlusulJamadeTanePage implements OnInit {
 
-  public title;
-  public link;
-  public voice = [];
+  private data:any = [];
+  public title:any[] = [];
+  public content:any[] = [];
+
     forwardshow: boolean = true;
  ngOnInit() { 
+  const url= 'https://strapi.alsader.net/api/aduruses?filters[adurus_cat][title][$eq]=bahes-kharej-ausul-jamade-tane-1416&populate=*'
+  this.http.get(url).subscribe((res)=>{
+    this.data = res
+    var i =0;
+    for ( i=0; i< this.data.data.length; i++ ) {
+     var array =[];
+     array["title"] = this.data.data[i].attributes.title;
+     array["link"] = this.data.data[i].attributes.link;
+     this.content.push(array);      
+    }
+  })
 
   }
   
-constructor(private storage: Storage,public navCtrl: NavController,private streamingMedia: StreamingMedia,private router: Router,private popoverCtrl: PopoverController,private popoverController: PopoverController,public loadingController: LoadingController) {
+constructor(private http: HttpClient,private storage: Storage,public navCtrl: NavController,private streamingMedia: StreamingMedia,private router: Router,private popoverCtrl: PopoverController,private popoverController: PopoverController,public loadingController: LoadingController) {
   
-    this.title = getXMLDataVoice("title");
-    this.link = getXMLDataVoice("link");
+ 
 
-     var i =0;
-     for ( i=0; i< this.title.length; i++ ) {
-     var onevoice =[];
-     onevoice["title"] = this.title[i];
-     onevoice["link"] = this.link[i];
-     this.voice.push(onevoice);
-    }
+  
  }
     ionViewWillEnter(){
         this.storage.get('page-aldurus').then(value => {
@@ -86,30 +92,3 @@ constructor(private storage: Storage,public navCtrl: NavController,private strea
   
 }
 
-function getXMLDataVoice( itemname:string ) {
-  var request = new XMLHttpRequest();
-
-  try {
-    request.open('GET', 'assets/alusul-14216-mp3/jamade-tane-mp3.xml', false);
-    request.send(null); 
-  } catch (err) {  
-    return '';
-  }
-
-  if (request.status === 200 || request.status === 0) { 
-    var parser = new DOMParser();
-    var doc = parser.parseFromString(request.responseText, "application/xml");
-    var voices = doc.getElementsByTagName("voice");
-    var result = [];
-    for (var i = 0; i < voices.length; i++) {
-      var voice = voices[i];  
-      
-      result.push(voice.getElementsByTagName(itemname)[0].childNodes[0].nodeValue)
-    }
-  
-    return result;
-  }
-  
-  return '';
-
-}
